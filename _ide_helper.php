@@ -18451,7 +18451,18 @@
      
 }
 
-        namespace Spatie\LaravelIgnition\Facades { 
+        namespace Laravel\Vapor { 
+            /**
+     * 
+     *
+     */ 
+        class Vapor {
+         
+    }
+     
+}
+
+    namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
      *
@@ -22985,6 +22996,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Vapor extends \Laravel\Vapor\Vapor {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
