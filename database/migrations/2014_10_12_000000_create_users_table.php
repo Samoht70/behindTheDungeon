@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -23,7 +24,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        User::factory()->count(1)->create();
+        User::create([
+            'firstname' => 'Admin',
+            'lastname' => 'Dragon',
+            'email' => 'admin.dragon@gmail.com',
+            'password' => 'DonjonDragon2022!',
+            'remember_token' => Str::random(10),
+        ]);
     }
 
     /**
