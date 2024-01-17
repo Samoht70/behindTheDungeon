@@ -5,9 +5,6 @@ import vueform from '@vueform/vueform/vite'
 
 
 export default defineConfig({
-    build: {
-        chunkSizeWarningLimit: 1600
-    },
     plugins: [
         laravel({
             input: 'resources/js/app.js',
