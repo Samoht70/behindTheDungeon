@@ -8,8 +8,6 @@ import Divider from "@/Components/Divider.vue";
 import DataTable from "@/Components/Table/DataTable.vue";
 import SubTitle from "@/Components/Title/SubTitle.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import AbilityCard from "@/Components/Card/AbilityCard.vue";
-import SkillCard from "@/Components/Card/SkillCard.vue";
 import StatistiquesCardList from "@/Components/List/StatistiquesCardList.vue";
 
 const props = defineProps({
@@ -19,26 +17,17 @@ const props = defineProps({
     }
 })
 
-const headerTabs = [
+const tabs = [
     {name: 'Informations globales'},
     {name: 'Statistiques'},
     {name: 'Attaques et équipements'},
     {name: 'Compétences et aptitudes'},
     {name: 'Origine'},
 ]
-const selectedHeaderTab = ref(headerTabs[0].name)
+const selectedTab = ref(tabs[0].name)
 
-const statsTabs = [
-    {name: 'Capacités'},
-    {name: 'Jets de sauvegarde'},
-    {name: 'Compétences'}
-]
-const selectedStatTab = ref(statsTabs[0].name)
-
-const handleSelect = (tabs, name) => {
-    tabs === headerTabs
-        ? selectedHeaderTab.value = headerTabs.find(tab => tab.name === name).name
-        : selectedStatTab.value = statsTabs.find(tab => tab.name === name).name
+const handleSelect = (name) => {
+    selectedTab.value = tabs.find(tab => tab.name === name).name
 }
 
 const weapons = computed({
@@ -86,12 +75,12 @@ const coins = computed({
     <Layout>
         <Tab
             type="bar-underline"
-            :tabs="headerTabs"
-            :selected-tab="selectedHeaderTab"
+            :tabs="tabs"
+            :selected-tab="selectedTab"
             @handleSelect="handleSelect"
         />
 
-        <template v-if="selectedHeaderTab === 'Informations globales'">
+        <template v-if="selectedTab === 'Informations globales'">
             <TabItem title="Informations globales" title-is-center>
                 <template #content>
                     <div class="flex flex-col justify-between items-center p-0 gap-x-4 gap-y-4 sm:p-4 md:flex-row md:gap-y-0">
@@ -192,37 +181,18 @@ const coins = computed({
                 </template>
             </TabItem>
         </template>
-        <template v-if="selectedHeaderTab === 'Statistiques'">
+        <template v-if="selectedTab === 'Statistiques'">
             <TabItem title="Statistiques" title-is-center>
                 <template #content>
-                    <Tab
-                        type="default"
-                        :selected-tab="selectedStatTab"
-                        :tabs="statsTabs"
-                        @handleSelect="handleSelect"
-                    />
-
                     <StatistiquesCardList
-                        v-if="selectedStatTab === 'Capacités'"
-                        type="ability"
-                        :data="character.abilities"
-                    />
-
-                    <StatistiquesCardList
-                        v-if="selectedStatTab === 'Jets de sauvegarde'"
-                        type="saving_throw"
-                        :data="character.saving_throws"
-                    />
-
-                    <StatistiquesCardList
-                        v-if="selectedStatTab === 'Compétences'"
-                        type="skill"
-                        :data="character.skills"
+                        :abilities="character.abilities"
+                        :skills="character.skills"
+                        :savingThrows="character.saving_throws"
                     />
                 </template>
             </TabItem>
         </template>
-        <template v-if="selectedHeaderTab === 'Attaques et équipements'">
+        <template v-if="selectedTab === 'Attaques et équipements'">
             <TabItem title="Attaques et équipements" title-is-center>
                 <template #content>
                     <div class="p-4 space-y-4">
@@ -269,7 +239,7 @@ const coins = computed({
                 </template>
             </TabItem>
         </template>
-        <template v-if="selectedHeaderTab === 'Compétences et aptitudes'">
+        <template v-if="selectedTab === 'Compétences et aptitudes'">
             <TabItem title="Compétences et aptitudes" title-is-center>
                 <template #content>
                     <section>
@@ -304,7 +274,7 @@ const coins = computed({
                 </template>
             </TabItem>
         </template>
-        <template v-if="selectedHeaderTab === 'Origine'">
+        <template v-if="selectedTab === 'Origine'">
             <TabItem title="Origine" title-is-center>
                 <template #content>
                     <div class="px-4 pt-4 text-justify">

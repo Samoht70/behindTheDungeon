@@ -1,44 +1,30 @@
 <script setup>
-import AbilityCard from "@/Components/Card/AbilityCard.vue";
-import SkillCard from "@/Components/Card/SkillCard.vue";
-import SavingThrowCard from "@/Components/Card/SavingThrowCard.vue";
+import AbilityPart from "@/Components/Card/AbilityPart.vue";
+import StatCard from "@/Components/Card/StatCard.vue";
 
 const props = defineProps({
-    data: {
+    abilities: {
         type: Array,
         required: true
     },
-    type: {
-        type: String,
+    savingThrows: {
+        type: Array,
+        required: true
+    },
+    skills: {
+        type: Array,
         required: true
     }
 })
 </script>
 
 <template>
-    <div class="p-2 overflow-hidden rounded-b-lg rounded-tr-lg bg-gray-200 space-y-2 shadow sm:grid sm:grid-cols-3 sm:gap-2 sm:space-y-0">
-        <template v-for="(item, index) in data" :key="item.id">
-            <AbilityCard
-                v-if="type === 'ability'"
-                :index="index"
-                :ability="item"
-                :characterBonus="$page.props.character.proficiency_bonus"
-            />
-
-            <SkillCard
-                v-else-if="type === 'skill'"
-                :index="index"
-                :skill="item"
-                :ability="$page.props.character.abilities.find(e => e.id === item.ability_id)"
-                :characterBonus="$page.props.character.proficiency_bonus"
-            />
-
-            <SavingThrowCard
-                v-else
-                :index="index"
-                :savingThrow="item"
-                :ability="$page.props.character.abilities.find(e => e.id === item.ability_id)"
-                :characterBonus="$page.props.character.proficiency_bonus"
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <template v-for="ability in abilities" :key="ability.id">
+            <StatCard
+                :ability="ability"
+                :abilitySavingThrow="savingThrows.find(e => e.ability_id === ability.id)"
+                :abilitySkills="skills.filter(e => e.ability_id === ability.id)"
             />
         </template>
     </div>

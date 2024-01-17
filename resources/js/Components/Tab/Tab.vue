@@ -25,7 +25,7 @@ defineEmits(['handleSelect'])
             id="tabs"
             name="tabs"
             class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
-            @change="(event) => $emit('handleSelect', tabs, event.target.value)"
+            @change="(event) => $emit('handleSelect', event.target.value)"
         >
             <option
                 v-for="tab in tabs"
@@ -51,7 +51,7 @@ defineEmits(['handleSelect'])
                         'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10'
                     ]"
                     :aria-current="selectedTab === tab.name ? 'page' : undefined"
-                    @click="$emit('handleSelect', tabs, tab.name)"
+                    @click="$emit('handleSelect', tab.name)"
                 >
                     <span>{{ tab.name }}</span>
                     <span
