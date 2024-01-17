@@ -46,7 +46,7 @@ library.add(
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: name => {
-        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true });
+        const pages = import.meta.glob('./Pages/**/*.vue');
         return pages[`./Pages/${name}.vue`]
     },
     setup({ el, App, props, plugin }) {
