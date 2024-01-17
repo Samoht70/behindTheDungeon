@@ -34,7 +34,7 @@ const submit = () => {
 
 <template>
     <Layout>
-        <Head title="Log in" />
+        <Head title="Connexion" />
 
         <div class="h-full flex flex-col sm:justify-center items-center pt-6 bg-gray-100">
             <div class="space-y-8 sm:w-full sm:max-w-lg px-6 py-4 bg-white shadow-md overflow-hidden rounded-lg">
@@ -93,7 +93,7 @@ const submit = () => {
 
                     <div>
                         <PrimaryButton class="flex w-full justify-center mt-4 text-sm leading-6" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Log in
+                            Se connecter
                         </PrimaryButton>
                     </div>
                 </form>

@@ -46,7 +46,7 @@ defineProps({
             </div>
         </div>
         <ResponsiveNavLink v-else :href="route('login')" :active="route().current('login')">
-            Log in
+            Se connecter
         </ResponsiveNavLink>
     </div>
 </template>
